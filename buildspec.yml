@@ -16,12 +16,12 @@ phases:
       # - aws cloudformation package --template template.yml --s3-bucket $S3_BUCKET --output-template template-export.yml
       - echo "Starting SAM packaging `date` in `pwd`"
       - aws cloudformation package --template-file template.yml --s3-bucket $BUILD_OUTPUT_BUCKET --output-template-file packaged.yaml
-  #post_build:
-    #commands:
+  post_build:
+    commands:
       # Use Post Build for notifications, git tags and any further customization after build
       # - echo "[Post-Build phase]"
-    #  - echo "SAM packaging completed on `date`"
-#artifacts:
- # type: zip
- # files:
- #   - packaged.yaml
+      - echo "SAM packaging completed on `date`"
+artifacts:
+  type: zip
+  files:
+    - packaged.yaml
